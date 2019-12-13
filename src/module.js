@@ -16,7 +16,6 @@ const moduleFactory = (host, appName) => ({
   },
   mutations: {
     setFeatures(state, features) {
-      console.log(features);
       Vue.set(state, "features", Object.assign({}, features));
     }
   },

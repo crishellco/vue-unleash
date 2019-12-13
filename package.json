@@ -2,6 +2,7 @@
   "name": "vue-unleash",
   "version": "0.1.0",
   "author": "Chris Mitchell (@crishellco)",
+  "description": "A Vue & Vuex plugin for the Unleash open-source feature flag platform",
   "scripts": {
     "build": "vue-cli-service build",
     "test": "vue-cli-service test:unit",

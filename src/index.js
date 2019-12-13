@@ -3,7 +3,15 @@ import Feature from "./components/Feature.vue";
 
 const version = "__VERSION__";
 
-const install = (Vue, { store, host, appName }) => {
+const install = (Vue, { appName, host, store }) => {
+  if (!host) {
+    throw new Error("Please initialize plugin with a Unleash host.");
+  }
+
+  if (!store) {
+    throw new Error("Please initialize plugin with a Vuex store.");
+  }
+
   store.registerModule("unleash", moduleFactory(host, appName));
   Vue.component("unleash-feature", Feature);
   store.dispatch("unleash/fetch");
