@@ -18,9 +18,7 @@
     "dist/vue-unleash.esm.js",
     "src"
   ],
-  "dependencies": {
-    "core-js": "^3.4.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@vue/cli": "^4.1.1",
     "@vue/cli-plugin-babel": "^4.1.0",
