@@ -64,19 +64,15 @@ export default {
 };
 ```
 
-## Lint
+## Scripts
 
 ```bash
 yarn lint
 ```
 
-## Test
-
 ```bash
 yarn test
 ```
-
-## Build
 
 ```bash
 yarn build
