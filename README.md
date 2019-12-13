@@ -40,7 +40,7 @@ Vue.use(VueUnleash, {
 });
 ```
 
-## Usage
+## Component Usage
 
 ```javascript
 <template>
@@ -48,6 +48,20 @@ Vue.use(VueUnleash, {
     <add-user-form />
   </unleash-feature>
 </template>
+```
+
+## Store Usage
+
+```javascript
+export default {
+  mounted() {
+    // Get all data i.e. { AddUser: true }
+    console.log(this.$store.state.unleash.features);
+
+    // Re-fetch data
+    this.$store.dispatch("unleash/fetch");
+  }
+};
 ```
 
 ## Lint
