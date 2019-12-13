@@ -1,6 +1,6 @@
 {
   "name": "vue-unleash",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Chris Mitchell (@crishellco)",
   "description": "A Vue & Vuex plugin for the Unleash open-source feature flag platform",
   "scripts": {
