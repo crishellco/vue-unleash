@@ -1,16 +1,22 @@
 import { moduleFactory } from "./module";
-import Feature from "./Feature.vue";
+import Feature from "./components/Feature.vue";
 
-function install(Vue, { store, host, appName }) {
+const version = "__VERSION__";
+
+const install = (Vue, { store, host, appName }) => {
   store.registerModule("unleash", moduleFactory(host, appName));
   Vue.component("unleash-feature", Feature);
   store.dispatch("unleash/fetch");
-}
+};
 
-export default install;
+const plugin = {
+  Feature,
+  install,
+  version
+};
+
+export default plugin;
 
 if (typeof window !== "undefined" && window.Vue) {
-  window.Vue.use(install);
+  window.Vue.use(plugin);
 }
-
-export { Feature };

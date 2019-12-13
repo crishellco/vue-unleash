@@ -31,6 +31,10 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({});
 
+/**
+ * The <unleash-feature /> component is registered
+ * globally during installation.
+ */
 Vue.use(VueUnleash, {
   appName: "MyAppName",
   host: "https://my-hosted-unleash.io",
