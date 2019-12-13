@@ -1,23 +1,18 @@
-// import { createLocalVue } from '@vue/test-utils';
-// import moment from 'moment';
-// import Vuex from 'vuex';
+import { createLocalVue } from "@vue/test-utils";
+import Vuex from "vuex";
+import VueUnleash from "../src";
 
-// import constants from '../src/constants';
-// import VueRequestStore from '../src';
+const host = "https://fake-cost.io";
+const appName = "VueUnleash";
+let localVue;
+let store;
 
-// const identifier = 'identifier';
-// const message = 'message';
-// let localVue;
-// let store;
-
-// beforeEach(() => {
-//   localVue = createLocalVue();
-//   localVue.use(Vuex);
-//   store = new Vuex.Store();
-//   localVue.use(VueRequestStore, { store });
-
-//   store.commit('requests/reset', { root: true });
-// });
+beforeEach(() => {
+  localVue = createLocalVue();
+  localVue.use(Vuex);
+  store = new Vuex.Store();
+  localVue.use(VueUnleash, { appName, host, store });
+});
 
 // describe('module.js', () => {
 //   it('should correctly return data from getters', () => {

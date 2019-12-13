@@ -11481,4 +11481,3 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export default install;
 export { __vue_component__ as Feature };
-//# sourceMappingURL=bundle.js.map

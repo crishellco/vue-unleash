@@ -15,6 +15,8 @@ module.exports = {
     "**/test/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
   ],
   transform: {
-    ".*\\.(vue)$": "vue-jest"
-  }
+    "^.+\\.(js|jsx)?$": "babel-jest",
+    "^.+\\.vue$": "vue-jest"
+  },
+  transformIgnorePatterns: ["/node_modules/(?!test-component).+\\.js$"]
 };
