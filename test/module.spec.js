@@ -86,3 +86,8 @@
 //     });
 //   });
 // });
+describe("module.js", () => {
+  it("should pass", () => {
+    expect(true).toBeTruthy();
+  });
+});
