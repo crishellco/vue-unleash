@@ -16,10 +16,8 @@ _This plugin requires that your project use Vuex_
 
 ```bash
 yarn add -D vue-unleash
-yarn add -D vuex
 # or
 npm i -D vue-unleash
-npm i -D vuex
 ```
 
 ```javascript
