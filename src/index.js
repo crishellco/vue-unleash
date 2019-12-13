@@ -1,5 +1,5 @@
 import { moduleFactory } from "./module";
-import Feature from "./components/Feature.vue";
+import UnleashFeature from "./UnleashFeature.vue";
 
 const version = "__VERSION__";
 
@@ -13,12 +13,12 @@ const install = (Vue, { appName, host, store }) => {
   }
 
   store.registerModule("unleash", moduleFactory(host, appName));
-  Vue.component("unleash-feature", Feature);
+  Vue.component("unleash-feature", UnleashFeature);
   store.dispatch("unleash/fetch");
 };
 
 const plugin = {
-  Feature,
+  UnleashFeature,
   install,
   version
 };
