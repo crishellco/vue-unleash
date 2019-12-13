@@ -4,9 +4,9 @@
   "author": "Chris Mitchell (@crishellco)",
   "description": "A Vue & Vuex plugin for the Unleash open-source feature flag platform",
   "scripts": {
-    "build": "vue-cli-service build",
-    "test": "vue-cli-service test:unit && jest-coverage-badges output badges",
-    "lint": "vue-cli-service lint"
+    "build": "node_modules/.bin/vue-cli-service build",
+    "test": "node_modules/.bin/vue-cli-service test:unit && jest-coverage-badges output badges",
+    "lint": "node_modules/.bin/vue-cli-service lint"
   },
   "main": "dist/vue-unleash.common.js",
   "module": "dist/vue-unleash.esm.js",
