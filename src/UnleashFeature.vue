@@ -10,24 +10,7 @@ export default {
 
   computed: {
     enabled() {
-      const feature = this.$store.state.unleash.features[this.name];
-      const featureEnabled = feature && feature.enabled;
-
-      if (!featureEnabled) {
-        return false;
-      }
-
-      for (const strategy of feature.strategies) {
-        if (!this[strategy.name]) {
-          continue;
-        }
-
-        if (!this[strategy.name](strategy.parameters)) {
-          return false;
-        }
-      }
-
-      return featureEnabled;
+      return this.$store.state.unleash.enabledFeatures[this.name];
     }
   },
 

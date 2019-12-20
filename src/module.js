@@ -2,7 +2,7 @@ import axios from 'axios';
 import keyBy from 'lodash.keyby';
 import Vue from 'vue';
 
-const moduleFactory = (host, appName) => ({
+const moduleFactory = (host, appName, strategyProviders = {}) => ({
   actions: {
     async fetch({ commit }) {
       commit('setLoading', true);
@@ -14,7 +14,7 @@ const moduleFactory = (host, appName) => ({
           }
         });
 
-        commit('setFeatures', keyBy(data.features, 'name'));
+        commit('setFeatures', data.features);
       } catch (e) {
         // istanbul ignore next
         console.error('Unable to reach Unleash API');
@@ -26,7 +26,24 @@ const moduleFactory = (host, appName) => ({
 
   mutations: {
     setFeatures(state, features) {
-      Vue.set(state, 'features', Object.assign({}, features));
+      const enabledFeatures = features.reduce((result, feature) => {
+        result[feature.name] = feature.enabled;
+
+        for (const strategy of feature.strategies) {
+          if (!strategyProviders[strategy.name]) {
+            continue;
+          }
+
+          if (!strategyProviders[strategy.name](strategy.parameters)) {
+            result[feature.name] = false;
+          }
+        }
+
+        return result;
+      }, {});
+
+      Vue.set(state, 'enabledFeatures', Object.assign({}, enabledFeatures));
+      Vue.set(state, 'features', Object.assign({}, keyBy(features, 'name')));
     },
 
     setLoading(state, loading) {
@@ -37,6 +54,7 @@ const moduleFactory = (host, appName) => ({
   namespaced: true,
 
   state: {
+    enabledFeatures: {},
     features: {},
     loading: true
   }

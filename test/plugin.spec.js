@@ -85,25 +85,19 @@ describe('module.js', () => {
   it('should enable and disable', async () => {
     expect(wrapper.text()).toBeFalsy();
 
-    store.commit('unleash/setFeatures', {
-      Settings: enabledFixture.features[0]
-    });
+    store.commit('unleash/setFeatures', enabledFixture.features);
 
     await Vue.nextTick();
     expect(wrapper.text()).toBe('hello');
   });
 
   it('should use strategy providers', async () => {
-    store.commit('unleash/setFeatures', {
-      Settings: enabledFixtureWithStrategies.features[0]
-    });
+    store.commit('unleash/setFeatures', enabledFixtureWithStrategies.features);
 
     await Vue.nextTick();
     expect(wrapper.text()).toBe('hello');
 
-    store.commit('unleash/setFeatures', {
-      Settings: disabledFixtureWithStrategies.features[0]
-    });
+    store.commit('unleash/setFeatures', disabledFixtureWithStrategies.features);
 
     await Vue.nextTick();
     expect(wrapper.text()).toBeFalsy();

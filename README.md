@@ -78,6 +78,9 @@ export default {
     // Get all features
     console.log(this.$store.state.unleash.features);
 
+    // Get enabled state of all features
+    console.log(this.$store.state.unleash.enabledFeatures);
+
     // Get weather initial loading is occurring
     console.log(this.$store.state.unleash.loading);
 

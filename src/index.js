@@ -12,9 +12,8 @@ const install = (Vue, { appName, host, strategyProviders, store }) => {
     throw new Error('Please initialize plugin with a Vuex store.');
   }
 
-  UnleashFeature.methods = Object.assign({}, strategyProviders || {});
   Vue.config.applicationHostname = 'localhost';
-  store.registerModule('unleash', moduleFactory(host, appName));
+  store.registerModule('unleash', moduleFactory(host, appName, strategyProviders));
   Vue.component('unleash-feature', UnleashFeature);
   store.dispatch('unleash/fetch');
 };
