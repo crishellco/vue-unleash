@@ -48,11 +48,13 @@ Vue.use(VueUnleash, {
     /**
      * Example strategy provider
      *
-     * @param {object} strategy Strategy object from Unleash API
+     * @param {object} parameters Strategy parameters object from Unleash API
      * @param {object} unleashState Full state from unleash Vuex module
      * @return {boolean} If enabled or not
      */
-    applicationHostname({ parameters: { hostNames } }, unleashState) {
+    applicationHostname(parameters, unleashState) {
+      const { hostNames } = parameters;
+
       return hostNames.split(',').includes('vue-unleash.io');
     }
   }

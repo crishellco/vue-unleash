@@ -55,7 +55,7 @@ const enabledFixtureWithStrategies = {
 };
 
 const strategyProviders = {
-  applicationHostname({ parameters: { hostNames } }) {
+  applicationHostname({ hostNames }) {
     return hostNames.split(',').includes('localhost');
   }
 };
