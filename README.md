@@ -6,9 +6,9 @@
 ![](badges/badge-lines.svg)
 ![](badges/badge-statements.svg)
 
-A Vue & Vuex plugin for [Unleash](https://unleash.github.io/).
+A Vue plugin for [Unleash](https://unleash.github.io/).
 
-Vue Unleash provides an integration for Vue, Vuex, and the Unleash open-source feature flag platform.
+Vue Unleash provides an integration for Vue and the Unleash open-source feature flag platform.
 
 _This plugin requires that your project use Vuex_
 
