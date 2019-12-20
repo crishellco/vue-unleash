@@ -2,17 +2,20 @@ import axios from 'axios';
 import keyBy from 'lodash.keyby';
 import Vue from 'vue';
 
-const moduleFactory = (host, appName, strategyProviders = {}) => ({
+const moduleFactory = ({ host, appName, namePrefix, strategyProviders = {} }) => ({
   actions: {
     async fetch({ commit }) {
       commit('setLoading', true);
 
       try {
-        const { data } = await axios.get(`${host}/api/client/features`, {
-          headers: {
-            'UNLEASH-APPNAME': appName
+        const { data } = await axios.get(
+          `${host}/api/client/features${namePrefix ? `?namePrefix=${namePrefix}` : ''}`,
+          {
+            headers: {
+              'UNLEASH-APPNAME': appName
+            }
           }
-        });
+        );
 
         commit('setFeatures', data.features);
       } catch (e) {

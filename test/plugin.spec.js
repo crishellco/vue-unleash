@@ -62,9 +62,11 @@ const strategyProviders = {
 
 jest.mock('axios');
 
+let axiosMock;
+
 describe('module.js', () => {
   beforeEach(() => {
-    axios.get.mockImplementationOnce(() => Promise.resolve({ data: disabledFixture }));
+    axiosMock = axios.get.mockImplementationOnce(() => Promise.resolve({ data: disabledFixture }));
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
@@ -78,6 +80,7 @@ describe('module.js', () => {
       expect(store.state.unleash.features).toEqual({
         Settings: disabledFixture.features[0]
       });
+      expect(axiosMock.mock.calls[0][0]).toBe(`${host}/api/client/features`);
       done();
     }, 500);
   });
