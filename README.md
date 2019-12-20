@@ -53,7 +53,7 @@ Vue.use(VueUnleash, {
      * @return {boolean} If enabled or not
      */
     applicationHostname({ parameters: { hostNames } }, unleashState) {
-      return hostNames.split(',').includes('www.vue-unleash.io');
+      return hostNames.split(',').includes('vue-unleash.io');
     }
   }
 });
