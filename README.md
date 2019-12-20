@@ -55,8 +55,11 @@ Vue.use(VueUnleash, {
 ```javascript
 export default {
   mounted() {
-    // Get all data i.e. { AddUser: true }
+    // Get all features
     console.log(this.$store.state.unleash.features);
+
+    // Get weather initial loading is occurring
+    console.log(this.$store.state.unleash.loading);
 
     // Re-fetch data
     this.$store.dispatch('unleash/fetch');
