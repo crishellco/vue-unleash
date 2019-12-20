@@ -1,7 +1,5 @@
 export default {
-  applicationHostname(strategy) {
-    const parameters = strategy.parameters || { hostNames: '' };
-
-    return parameters.hostNames.split(',').includes(window.location.host);
+  applicationHostname({ parameters: { hostNames } }) {
+    return hostNames.split(',').includes(window.location.host);
   }
 };
