@@ -71,6 +71,10 @@ export default {
 };
 ```
 
+## Supported Strategies
+
+- [applicationhostname](https://unleash.github.io/docs/activation_strategy#applicationhostname)
+
 ## Scripts
 
 ```bash
