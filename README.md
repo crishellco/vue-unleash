@@ -40,6 +40,10 @@ Vue.use(VueUnleash, {
   // Required, Unleash instance host
   host: 'https://my-hosted-unleash.io',
 
+  // Optional, prefix to filter features by via the Unleash API
+  // https://unleash.github.io/docs/api/client/features
+  namePrefix: 'MyProject',
+
   // Required
   store,
 

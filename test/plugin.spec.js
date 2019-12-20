@@ -62,11 +62,13 @@ const strategyProviders = {
 
 jest.mock('axios');
 
-let axiosMock;
+let axiosGetMock;
 
 describe('module.js', () => {
   beforeEach(() => {
-    axiosMock = axios.get.mockImplementationOnce(() => Promise.resolve({ data: disabledFixture }));
+    axiosGetMock = axios.get.mockImplementationOnce(() =>
+      Promise.resolve({ data: disabledFixture })
+    );
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
@@ -80,7 +82,27 @@ describe('module.js', () => {
       expect(store.state.unleash.features).toEqual({
         Settings: disabledFixture.features[0]
       });
-      expect(axiosMock.mock.calls[0][0]).toBe(`${host}/api/client/features`);
+      expect(axiosGetMock.mock.calls[0][0]).toBe(`${host}/api/client/features`);
+      done();
+    }, 500);
+  });
+
+  it('should fetch with namePrefix', done => {
+    axiosGetMock.mockReset();
+    axiosGetMock = axios.get.mockImplementationOnce(() =>
+      Promise.resolve({ data: disabledFixture })
+    );
+    localVue = createLocalVue();
+    localVue.use(Vuex);
+    store = new Vuex.Store();
+    localVue.use(VueUnleash, { appName, host, namePrefix: 'namePrefix', store });
+
+    wrapper = mount(component, { localVue, store });
+
+    setTimeout(() => {
+      expect(axiosGetMock.mock.calls[0][0]).toBe(
+        `${host}/api/client/features?namePrefix=namePrefix`
+      );
       done();
     }, 500);
   });
