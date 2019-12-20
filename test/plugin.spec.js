@@ -5,16 +5,17 @@ import VueUnleash from '../src';
 import axios from 'axios';
 
 const appName = 'VueUnleash';
+const applicationHostname = 'testing';
 const component = {
   template: '<unleash-feature name="Settings">hello</unleash-feature>'
 };
-const host = 'https://fake-cost.io';
-// const url = `${host}/api/client/features`;
+const host = 'https://fake-host.io';
+
 let localVue;
 let store;
 let wrapper;
 
-const fixture = {
+const disabledFixture = {
   features: [
     {
       name: 'Settings',
@@ -24,15 +25,25 @@ const fixture = {
   ]
 };
 
+const enabledFixture = {
+  features: [
+    {
+      name: 'Settings',
+      enabled: true,
+      strategies: [{ name: 'applicationHostname', parameters: { hostNames: applicationHostname } }]
+    }
+  ]
+};
+
 jest.mock('axios');
 
 describe('module.js', () => {
   beforeEach(() => {
-    axios.get.mockImplementationOnce(() => Promise.resolve({ data: fixture }));
+    axios.get.mockImplementationOnce(() => Promise.resolve({ data: disabledFixture }));
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
-    localVue.use(VueUnleash, { appName, host, store });
+    localVue.use(VueUnleash, { applicationHostname, appName, host, store });
 
     wrapper = mount(component, { localVue, store });
   });
@@ -40,11 +51,7 @@ describe('module.js', () => {
   it('should fetch', done => {
     setTimeout(() => {
       expect(store.state.unleash.features).toEqual({
-        Settings: {
-          name: 'Settings',
-          enabled: false,
-          strategies: [{ name: 'default' }]
-        }
+        Settings: disabledFixture.features[0]
       });
       done();
     }, 500);
@@ -54,53 +61,24 @@ describe('module.js', () => {
     expect(wrapper.text()).toBeFalsy();
 
     store.commit('unleash/setFeatures', {
-      Settings: {
-        name: 'Settings',
-        enabled: true,
-        strategies: [{ name: 'default' }]
-      }
+      Settings: enabledFixture.features[0]
     });
 
     await Vue.nextTick();
-
     expect(wrapper.text()).toBe('hello');
   });
 
   it('should adhere to applicationHostname strategy', async () => {
     store.commit('unleash/setFeatures', {
-      Settings: {
-        name: 'Settings',
-        enabled: true,
-        strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'localhost' } }]
-      }
+      Settings: enabledFixture.features[0]
     });
 
     await Vue.nextTick();
-
     expect(wrapper.text()).toBe('hello');
 
-    store.commit('unleash/setFeatures', {
-      Settings: {
-        name: 'Settings',
-        enabled: true,
-        strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'anotherhost' } }]
-      }
-    });
+    store.commit('unleash/setApplicationHostname', 'anotherhost');
 
     await Vue.nextTick();
-
-    expect(wrapper.text()).toBeFalsy();
-
-    store.commit('unleash/setFeatures', {
-      Settings: {
-        name: 'Settings',
-        enabled: true,
-        strategies: [{ name: 'applicationHostname' }]
-      }
-    });
-
-    await Vue.nextTick();
-
     expect(wrapper.text()).toBeFalsy();
   });
 });

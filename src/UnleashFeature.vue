@@ -24,7 +24,9 @@ export default {
           continue;
         }
 
-        if (!strategyProviders[strategy.name](strategy)) {
+        if (
+          !strategyProviders[strategy.name](strategy, this.$store.state.unleash.applicationHostname)
+        ) {
           return false;
         }
       }

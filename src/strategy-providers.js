@@ -1,5 +1,5 @@
 export default {
-  applicationHostname({ parameters: { hostNames } }) {
-    return hostNames.split(',').includes(window.location.host);
+  applicationHostname({ parameters: { hostNames } }, applicationHostname) {
+    return hostNames.split(',').includes(applicationHostname);
   }
 };

@@ -34,7 +34,11 @@ const store = new Vuex.Store({});
  * globally during installation.
  */
 Vue.use(VueUnleash, {
+  // Optional, defaults to window.location.host, for applicationHostname strategy
+  applicationHostname: 'www.some-fake-host.com',
+  // Optional, name of app
   appName: 'MyAppName',
+  // Required, Unleash instance host
   host: 'https://my-hosted-unleash.io',
   store
 });
