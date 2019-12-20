@@ -7,14 +7,20 @@ const moduleFactory = (host, appName) => ({
     async fetch({ commit }) {
       commit('setLoading', true);
 
-      const { data } = await axios.get(`${host}/api/client/features`, {
-        headers: {
-          'UNLEASH-APPNAME': appName
-        }
-      });
+      try {
+        const { data } = await axios.get(`${host}/api/client/features`, {
+          headers: {
+            'UNLEASH-APPNAME': appName
+          }
+        });
 
-      commit('setFeatures', keyBy(data.features, 'name'));
-      commit('setLoading', false);
+        commit('setFeatures', keyBy(data.features, 'name'));
+      } catch (e) {
+        // istanbul ignore next
+        console.error('Unable to reach Unleash API');
+      } finally {
+        commit('setLoading', false);
+      }
     }
   },
 

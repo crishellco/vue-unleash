@@ -22,7 +22,7 @@ export default {
           continue;
         }
 
-        if (!this[strategy.name](strategy.parameters || {}, this.$store.state.unleash)) {
+        if (!this[strategy.name](strategy.parameters, this.$store.state.unleash)) {
           return false;
         }
       }
