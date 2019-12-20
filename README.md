@@ -35,14 +35,14 @@ const store = new Vuex.Store({});
  */
 Vue.use(VueUnleash, {
   // Optional, name of app
-  appName: 'MyAppName',
+  appName: 'MyVueApp',
 
   // Required, Unleash instance host
   host: 'https://my-hosted-unleash.io',
 
   // Optional, prefix to filter features by via the Unleash API
   // https://unleash.github.io/docs/api/client/features
-  namePrefix: 'MyProject',
+  namePrefix: 'MyVueApp',
 
   // Required
   store,
@@ -68,7 +68,7 @@ Vue.use(VueUnleash, {
 
 ```javascript
 <template>
-  <unleash-feature name="AddUser">
+  <unleash-feature name="MyVueApp.AddUser">
     <add-user-form />
   </unleash-feature>
 </template>
