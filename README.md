@@ -21,9 +21,9 @@ npm i -D vue-unleash
 ```
 
 ```javascript
-import Vue from "vue";
-import VueUnleash from "vue-unleash";
-import Vuex from "vuex";
+import Vue from 'vue';
+import VueUnleash from 'vue-unleash';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
@@ -34,8 +34,8 @@ const store = new Vuex.Store({});
  * globally during installation.
  */
 Vue.use(VueUnleash, {
-  appName: "MyAppName",
-  host: "https://my-hosted-unleash.io",
+  appName: 'MyAppName',
+  host: 'https://my-hosted-unleash.io',
   store
 });
 ```
@@ -59,7 +59,7 @@ export default {
     console.log(this.$store.state.unleash.features);
 
     // Re-fetch data
-    this.$store.dispatch("unleash/fetch");
+    this.$store.dispatch('unleash/fetch');
   }
 };
 ```

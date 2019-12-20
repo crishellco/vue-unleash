@@ -2,7 +2,7 @@
 export default {
   props: {
     name: {
-      default: "",
+      default: '',
       required: true,
       type: String
     }
@@ -10,7 +10,10 @@ export default {
 
   computed: {
     enabled() {
-      return !!this.$store.state.unleash.features[this.name];
+      return (
+        this.$store.state.unleash.features[this.name] &&
+        !!this.$store.state.unleash.features[this.name].enabled
+      );
     }
   },
 

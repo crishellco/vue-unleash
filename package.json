@@ -3,77 +3,66 @@
   "version": "0.5.0",
   "author": "Chris Mitchell (@crishellco)",
   "description": "A Vue & Vuex plugin for the Unleash open-source feature flag platform",
-  "scripts": {
-    "build": "node_modules/.bin/vue-cli-service build",
-    "test": "node_modules/.bin/vue-cli-service test:unit && jest-coverage-badges output badges",
-    "lint": "node_modules/.bin/vue-cli-service lint"
-  },
-  "main": "dist/vue-unleash.common.js",
-  "module": "dist/vue-unleash.esm.js",
-  "unpkg": "dist/vue-unleash.umd.min.js",
+  "main": "dist/vue-unleash.js",
   "files": [
-    "dist/vue-unleash.common.js",
-    "dist/vue-unleash.umd.min.js",
-    "dist/vue-unleash.umd.js",
-    "dist/vue-unleash.esm.js",
-    "src"
+    "dist",
+    "src",
+    "nuxt"
   ],
-  "dependencies": {},
-  "devDependencies": {
-    "@vue/cli": "^4.1.1",
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-plugin-unit-jest": "^4.1.1",
-    "@vue/cli-plugin-vuex": "^4.1.1",
-    "@vue/cli-service": "^4.1.0",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "fetch-mock": "^8.0.1",
-    "isomorphic-fetch": "^2.2.1",
-    "jest-coverage-badges": "^1.1.2",
-    "lodash": "^4.17.15",
-    "vue": "^2.6.10",
-    "vue-cli-plugin-p11n": "^0.4.0",
-    "vue-template-compiler": "^2.6.10",
-    "vuex": "^3.1.2",
-    "zl-fetch": "^3.0.2"
+  "scripts": {
+    "test": "jest && jest-coverage-badges output badges",
+    "lint": "yarn eslint --ext .js,.vue src/",
+    "lint:fix": "yarn eslint --ext .js,.vue src/ --fix",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
-  "homepage": "https://github.com/crishellco/vue-unleash#readme",
-  "jsdelivr": "dist/vue-unleash.umd.min.js",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/crishellco/vue-unleash.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crishellco/vue-unleash/issues"
+  },
+  "homepage": "https://github.com/crishellco/vue-unleash#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "axios": "^0.19.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-vue": "^2.0.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^6.0.1",
+    "husky": "^3.0.2",
+    "jest": "^24.9.0",
+    "jest-coverage-badges": "^1.1.2",
+    "poi": "^12.7.1",
+    "prettier": "^1.19.1",
+    "regenerator-runtime": "^0.13.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue": "^2.6.10",
+    "vue-html-loader": "^1.2.4",
+    "vue-jest": "^3.0.5",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.1.1",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
+  },
+  "dependencies": {
+    "lodash.keyby": "^4.6.0"
   }
 }

@@ -1,27 +1,38 @@
-import { keyBy, mapValues } from "lodash";
-import Vue from "vue";
-import zlFetch from "zl-fetch";
+import axios from 'axios';
+import keyBy from 'lodash.keyby';
+import Vue from 'vue';
 
 const moduleFactory = (host, appName) => ({
   actions: {
     async fetch({ commit }) {
-      const { body } = await zlFetch(`${host}/api/client/features`, {
+      commit('setLoading', true);
+
+      const { data } = await axios.get(`${host}/api/client/features`, {
         headers: {
-          "UNLEASH-APPNAME": appName
+          'UNLEASH-APPNAME': appName
         }
       });
 
-      commit("setFeatures", mapValues(keyBy(body.features, "name"), "enabled"));
+      commit('setFeatures', keyBy(data.features, 'name'));
+      commit('setLoading', false);
     }
   },
+
   mutations: {
     setFeatures(state, features) {
-      Vue.set(state, "features", Object.assign({}, features));
+      Vue.set(state, 'features', Object.assign({}, features));
+    },
+
+    setLoading(state, loading) {
+      state.loading = loading;
     }
   },
+
   namespaced: true,
+
   state: {
-    features: {}
+    features: {},
+    loading: true
   }
 });
 
