@@ -34,13 +34,28 @@ const store = new Vuex.Store({});
  * globally during installation.
  */
 Vue.use(VueUnleash, {
-  // Optional, defaults to window.location.host, for applicationHostname strategy
-  applicationHostname: 'www.some-fake-host.com',
   // Optional, name of app
   appName: 'MyAppName',
+
   // Required, Unleash instance host
   host: 'https://my-hosted-unleash.io',
-  store
+
+  // Required
+  store,
+
+  // Optional, providers to handle strategy logic
+  strategyProviders: {
+    /**
+     * Example strategy provider
+     *
+     * @param {object} strategy Strategy object from Unleash API
+     * @param {object} unleashState Full state from unleash Vuex module
+     * @return {boolean} If enabled or not
+     */
+    applicationHostname({ parameters: { hostNames } }, unleashState) {
+      return hostNames.split(',').includes('www.vue-unleash.io');
+    }
+  }
 });
 ```
 
@@ -70,10 +85,6 @@ export default {
   }
 };
 ```
-
-## Supported Strategies
-
-- [applicationhostname](https://unleash.github.io/docs/activation_strategy#applicationhostname)
 
 ## Scripts
 

@@ -3,7 +3,7 @@ import UnleashFeature from './UnleashFeature.vue';
 
 const version = '__VERSION__';
 
-const install = (Vue, { applicationHostname, appName, host, store }) => {
+const install = (Vue, { appName, host, strategyProviders, store }) => {
   if (!host) {
     throw new Error('Please initialize plugin with a Unleash host.');
   }
@@ -12,12 +12,10 @@ const install = (Vue, { applicationHostname, appName, host, store }) => {
     throw new Error('Please initialize plugin with a Vuex store.');
   }
 
-  applicationHostname = applicationHostname || window.location.host;
-
+  UnleashFeature.methods = Object.assign({}, strategyProviders || {});
   Vue.config.applicationHostname = 'localhost';
   store.registerModule('unleash', moduleFactory(host, appName));
   Vue.component('unleash-feature', UnleashFeature);
-  store.commit('unleash/setApplicationHostname', applicationHostname);
   store.dispatch('unleash/fetch');
 };
 

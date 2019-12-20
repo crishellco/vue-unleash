@@ -1,6 +1,4 @@
 <script>
-import strategyProviders from './strategy-providers';
-
 export default {
   props: {
     name: {
@@ -20,13 +18,11 @@ export default {
       }
 
       for (const strategy of feature.strategies) {
-        if (!strategyProviders[strategy.name]) {
+        if (!this[strategy.name]) {
           continue;
         }
 
-        if (
-          !strategyProviders[strategy.name](strategy, this.$store.state.unleash.applicationHostname)
-        ) {
+        if (!this[strategy.name](strategy, this.$store.state.unleash)) {
           return false;
         }
       }

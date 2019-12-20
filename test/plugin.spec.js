@@ -5,7 +5,6 @@ import VueUnleash from '../src';
 import axios from 'axios';
 
 const appName = 'VueUnleash';
-const applicationHostname = 'testing';
 const component = {
   template: '<unleash-feature name="Settings">hello</unleash-feature>'
 };
@@ -30,9 +29,35 @@ const enabledFixture = {
     {
       name: 'Settings',
       enabled: true,
-      strategies: [{ name: 'applicationHostname', parameters: { hostNames: applicationHostname } }]
+      strategies: [{ name: 'default' }]
     }
   ]
+};
+
+const disabledFixtureWithStrategies = {
+  features: [
+    {
+      name: 'Settings',
+      enabled: true,
+      strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'badhost' } }]
+    }
+  ]
+};
+
+const enabledFixtureWithStrategies = {
+  features: [
+    {
+      name: 'Settings',
+      enabled: true,
+      strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'localhost' } }]
+    }
+  ]
+};
+
+const strategyProviders = {
+  applicationHostname({ parameters: { hostNames } }) {
+    return hostNames.split(',').includes('localhost');
+  }
 };
 
 jest.mock('axios');
@@ -43,7 +68,7 @@ describe('module.js', () => {
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
-    localVue.use(VueUnleash, { applicationHostname, appName, host, store });
+    localVue.use(VueUnleash, { appName, host, strategyProviders, store });
 
     wrapper = mount(component, { localVue, store });
   });
@@ -68,15 +93,17 @@ describe('module.js', () => {
     expect(wrapper.text()).toBe('hello');
   });
 
-  it('should adhere to applicationHostname strategy', async () => {
+  it('should use strategy providers', async () => {
     store.commit('unleash/setFeatures', {
-      Settings: enabledFixture.features[0]
+      Settings: enabledFixtureWithStrategies.features[0]
     });
 
     await Vue.nextTick();
     expect(wrapper.text()).toBe('hello');
 
-    store.commit('unleash/setApplicationHostname', 'anotherhost');
+    store.commit('unleash/setFeatures', {
+      Settings: disabledFixtureWithStrategies.features[0]
+    });
 
     await Vue.nextTick();
     expect(wrapper.text()).toBeFalsy();

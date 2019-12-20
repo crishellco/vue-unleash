@@ -19,10 +19,6 @@ const moduleFactory = (host, appName) => ({
   },
 
   mutations: {
-    setApplicationHostname(state, applicationHostname) {
-      state.applicationHostname = applicationHostname;
-    },
-
     setFeatures(state, features) {
       Vue.set(state, 'features', Object.assign({}, features));
     },
@@ -35,7 +31,6 @@ const moduleFactory = (host, appName) => ({
   namespaced: true,
 
   state: {
-    applicationHostname: '',
     features: {},
     loading: true
   }
