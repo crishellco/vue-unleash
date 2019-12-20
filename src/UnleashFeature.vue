@@ -1,4 +1,6 @@
 <script>
+import strategyProviders from './strategy-providers';
+
 export default {
   props: {
     name: {
@@ -10,10 +12,24 @@ export default {
 
   computed: {
     enabled() {
-      return (
-        this.$store.state.unleash.features[this.name] &&
-        !!this.$store.state.unleash.features[this.name].enabled
-      );
+      const feature = this.$store.state.unleash.features[this.name];
+      const featureEnabled = feature && feature.enabled;
+
+      if (!featureEnabled) {
+        return false;
+      }
+
+      for (const strategy of feature.strategies) {
+        if (!strategyProviders[strategy.name]) {
+          continue;
+        }
+
+        if (!strategyProviders[strategy.name](strategy)) {
+          return false;
+        }
+      }
+
+      return featureEnabled;
     }
   },
 

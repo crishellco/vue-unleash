@@ -18,7 +18,8 @@ const fixture = {
   features: [
     {
       name: 'Settings',
-      enabled: false
+      enabled: false,
+      strategies: [{ name: 'default' }]
     }
   ]
 };
@@ -41,7 +42,8 @@ describe('module.js', () => {
       expect(store.state.unleash.features).toEqual({
         Settings: {
           name: 'Settings',
-          enabled: false
+          enabled: false,
+          strategies: [{ name: 'default' }]
         }
       });
       done();
@@ -54,12 +56,51 @@ describe('module.js', () => {
     store.commit('unleash/setFeatures', {
       Settings: {
         name: 'Settings',
-        enabled: true
+        enabled: true,
+        strategies: [{ name: 'default' }]
       }
     });
 
     await Vue.nextTick();
 
     expect(wrapper.text()).toBe('hello');
+  });
+
+  it('should adhere to applicationHostname strategy', async () => {
+    store.commit('unleash/setFeatures', {
+      Settings: {
+        name: 'Settings',
+        enabled: true,
+        strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'localhost' } }]
+      }
+    });
+
+    await Vue.nextTick();
+
+    expect(wrapper.text()).toBe('hello');
+
+    store.commit('unleash/setFeatures', {
+      Settings: {
+        name: 'Settings',
+        enabled: true,
+        strategies: [{ name: 'applicationHostname', parameters: { hostNames: 'anotherhost' } }]
+      }
+    });
+
+    await Vue.nextTick();
+
+    expect(wrapper.text()).toBeFalsy();
+
+    store.commit('unleash/setFeatures', {
+      Settings: {
+        name: 'Settings',
+        enabled: true,
+        strategies: [{ name: 'applicationHostname' }]
+      }
+    });
+
+    await Vue.nextTick();
+
+    expect(wrapper.text()).toBeFalsy();
   });
 });
