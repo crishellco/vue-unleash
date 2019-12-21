@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/crishellco/vue-unleash/issues"
   },
-  "homepage": "https://github.com/crishellco/vue-unleash#readme",
+  "homepage": "https://crishellco.github.io/vue-unleash/",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
