@@ -1,14 +1,8 @@
 {
-  "name": "vue-unleash",
-  "version": "1.0.1",
-  "author": "Chris Mitchell (@crishellco)",
-  "description": "A Vue plugin for the Unleash open-source feature flag platform",
-  "main": "dist/vue-unleash.js",
-  "files": [
-    "dist",
-    "src",
-    "nuxt"
-  ],
+  "name": "vue-hubble",
+  "version": "1.0.0",
+  "description": "A better way to select elements for UI testing in Vue",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "jest && jest-coverage-badges output badges",
     "lint": "eslint --ext .js,.vue src/",
@@ -17,20 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/crishellco/vue-unleash.git"
+    "url": "git+https://github.com/crishellco/vue-hubble.git"
   },
+  "author": "Chris Mitchell (@crishellco)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/crishellco/vue-unleash/issues"
-  },
-  "homepage": "https://github.com/crishellco/vue-unleash#readme",
+  "homepage": "https://github.com/crishellco/vue-hubble#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@vue/test-utils": "^1.0.0-beta.30",
-    "axios": "^0.19.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
@@ -38,32 +29,27 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-vue": "^2.0.2",
     "cross-env": "^5.2.0",
-    "eslint": "^6.7.2",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^6.7.0",
-    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-vue": "^6.0.1",
-    "husky": "^3.0.2",
-    "jest": "^24.9.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "jest": "^24.5.0",
     "jest-coverage-badges": "^1.1.2",
-    "poi": "^12.7.1",
+    "jest-serializer-vue": "^2.0.2",
     "prettier": "^1.19.1",
-    "regenerator-runtime": "^0.13.3",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "regenerator-runtime": "^0.13.2",
+    "rollup": "^1.7.4",
+    "rollup-plugin-commonjs": "^9.2.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
     "vue": "^2.6.10",
     "vue-html-loader": "^1.2.4",
     "vue-jest": "^3.0.5",
     "vue-loader": "^15.7.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "vuex": "^3.1.1",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
-  },
-  "peerDependencies": {
-    "vue": "^2.6.10"
-  },
-  "dependencies": {
-    "lodash.keyby": "^4.6.0"
   }
 }

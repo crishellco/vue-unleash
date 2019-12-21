@@ -1,28 +1,23 @@
-import { moduleFactory } from './module';
-import UnleashFeature from './UnleashFeature.vue';
+import directiveFactory from './directive';
 
-const install = (Vue, { appName, namePrefix, host, strategyProviders, store }) => {
-  if (!host) {
-    throw new Error('Please initialize plugin with a Unleash host.');
-  }
+let installed = false;
 
-  if (!store) {
-    throw new Error('Please initialize plugin with a Vuex store.');
-  }
-
-  Vue.config.applicationHostname = 'localhost';
-  store.registerModule('unleash', moduleFactory({ host, appName, namePrefix, strategyProviders }));
-  Vue.component('unleash-feature', UnleashFeature);
-  store.dispatch('unleash/fetch');
+const defaultConfig = {
+  defaultSelectorType: 'attr',
+  environment: 'test'
 };
 
-const plugin = {
-  UnleashFeature,
-  install
-};
+function install(Vue, options = {}) {
+  Vue.prototype.$hubble = Object.assign(defaultConfig, options);
 
-export default plugin;
+  if (!installed) {
+    Vue.directive('hubble', directiveFactory(Vue.prototype.$hubble));
+    installed = true;
+  }
+}
+
+export default install;
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(plugin);
+  window.Vue.use(install);
 }
