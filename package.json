@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "author": "Chris Mitchell (@crishellco)",
   "description": "A Vue plugin for the Unleash open-source feature flag platform",
-  "main": "dist/vue-unleash.js",
+  "main": "dist/index.js",
   "files": [
     "dist",
     "src",

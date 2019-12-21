@@ -6,7 +6,7 @@ module.exports = {
   output: {
     library: 'VueUnleash',
     libraryTarget: 'umd',
-    filename: 'vue-unleash.js',
+    filename: 'index.js',
     globalObject: "typeof self !== 'undefined' ? self : this"
   },
   module: {
