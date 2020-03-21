@@ -5,6 +5,7 @@
 ![](badges/badge-functionss.svg)
 ![](badges/badge-lines.svg)
 ![](badges/badge-statements.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3fa9055bd701571b6f89/maintainability)](https://codeclimate.com/github/crishellco/vue-unleash/maintainability)
 
 A Vue plugin for [Unleash](https://unleash.github.io/).
 
