@@ -1,13 +1,18 @@
 import { moduleFactory } from './module';
 import UnleashFeature from './UnleashFeature.vue';
+import UnleashDirective from './UnleashDirective';
 
-const install = (Vue, { appName, namePrefix, host, strategyProviders, store }) => {
+const install = (Vue, { appName, namePrefix, host, strategyProviders, store, directive }) => {
   if (!host) {
     throw new Error('Please initialize plugin with a Unleash host.');
   }
 
   if (!store) {
     throw new Error('Please initialize plugin with a Vuex store.');
+  }
+
+  if (directive) {
+    Vue.directive(directive, UnleashDirective)
   }
 
   Vue.config.applicationHostname = 'localhost';
@@ -18,7 +23,8 @@ const install = (Vue, { appName, namePrefix, host, strategyProviders, store }) =
 
 const plugin = {
   UnleashFeature,
-  install
+  install,
+  UnleashDirective
 };
 
 export default plugin;
