@@ -43,7 +43,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.0.1",
     "husky": "^4.2.3",
-    "jest": "^24.9.0",
+    "jest": "^26.5.2",
     "jest-coverage-badges": "^1.1.2",
     "lodash.keyby": "^4.6.0",
     "poi": "^12.7.1",
