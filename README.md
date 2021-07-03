@@ -38,7 +38,7 @@ Vue.use(VueUnleash, {
   // Optional, name of app
   appName: 'MyVueApp',
 
-  // Optional, instance id for this app
+  // Optional, instance id of app
   instanceId: 'my-vue-app-1',
 
   // Required, Unleash instance host
