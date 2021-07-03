@@ -1,10 +1,7 @@
 # Vue Unleash
 
 ![Build](https://github.com/crishellco/vue-unleash/workflows/Build/badge.svg)
-![](badges/badge-branches.svg)
-![](badges/badge-functionss.svg)
-![](badges/badge-lines.svg)
-![](badges/badge-statements.svg)
+[![codecov](https://codecov.io/gh/crishellco/vue-unleash/branch/master/graph/badge.svg?token=KSe1Aim7Mx)](https://codecov.io/gh/crishellco/vue-unleash)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2a6e74587ac474c5f0d5/maintainability)](https://codeclimate.com/github/crishellco/vue-unleash/maintainability)
 
 A Vue plugin for [Unleash](https://unleash.github.io/).
@@ -37,6 +34,9 @@ const store = new Vuex.Store({});
 Vue.use(VueUnleash, {
   // Optional, name of app
   appName: 'MyVueApp',
+
+  // Optional, instance id of app
+  instanceId: 'my-vue-app-1',
 
   // Required, Unleash instance host
   host: 'https://my-hosted-unleash.io',
