@@ -33,6 +33,7 @@ jobs:
           CI: true
       - uses: codecov/codecov-action@v1
       - run: yarn build
-      - run: yarn release
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn release
