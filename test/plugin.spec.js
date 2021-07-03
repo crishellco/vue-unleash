@@ -5,6 +5,7 @@ import VueUnleash from '../src';
 import axios from 'axios';
 
 const appName = 'VueUnleash';
+const instanceId = 'vue-unleash-1';
 const component = {
   template: '<unleash-feature name="Settings">hello</unleash-feature>'
 };
@@ -72,7 +73,7 @@ describe('module.js', () => {
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
-    localVue.use(VueUnleash, { appName, host, strategyProviders, store });
+    localVue.use(VueUnleash, { appName, host, instanceId, strategyProviders, store });
 
     wrapper = mount(component, { localVue, store });
   });
@@ -95,7 +96,7 @@ describe('module.js', () => {
     localVue = createLocalVue();
     localVue.use(Vuex);
     store = new Vuex.Store();
-    localVue.use(VueUnleash, { appName, host, namePrefix: 'namePrefix', store });
+    localVue.use(VueUnleash, { appName, host, instanceId, namePrefix: 'namePrefix', store });
 
     wrapper = mount(component, { localVue, store });
 
