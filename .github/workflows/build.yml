@@ -6,7 +6,7 @@ name: Build
 on: push
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,3 +24,4 @@ jobs:
       - run: yarn test
         env:
           CI: true
+      - uses: codecov/codecov-action@v1
