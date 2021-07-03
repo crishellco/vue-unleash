@@ -9,10 +9,11 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
-    "lint": "eslint --ext .js,.vue src/",
-    "lint:fix": "eslint --ext .js,.vue src/ --fix",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js"
+    "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
+    "test:js": "jest",
+    "lint:js": "eslint --ext .js,.vue src/",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@commitlint/cli": "^12.1.4",
+    "@form8ion/commitlint-config": "^1.0.19",
     "@vue/test-utils": "^1.0.0-beta.30",
     "axios": "^0.19.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -37,17 +40,20 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-vue": "^2.0.2",
     "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.0.1",
-    "husky": "^4.2.3",
+    "husky": "^7.0.0",
     "jest": "^24.9.0",
     "lodash.keyby": "^4.6.0",
+    "npm-run-all": "^4.1.5",
     "poi": "^12.7.1",
     "prettier": "^1.19.1",
     "regenerator-runtime": "^0.13.3",
+    "semantic-release": "^17.4.4",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.11",
     "vue-html-loader": "^1.2.4",
@@ -62,5 +68,10 @@
   "peerDependencies": {
     "vue": "^2.6.10",
     "vuex": "^3.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
