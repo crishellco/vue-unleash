@@ -39,6 +39,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-vue": "^2.0.2",
     "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-loader": "^3.0.3",
@@ -64,5 +65,10 @@
   "peerDependencies": {
     "vue": "^2.6.10",
     "vuex": "^3.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
