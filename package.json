@@ -12,7 +12,8 @@
     "test": "npm-run-all --print-label --parallel lint:* --parallel test:*",
     "test:js": "jest",
     "lint:js": "eslint --ext .js,.vue src/",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "poi": "^12.7.1",
     "prettier": "^1.19.1",
     "regenerator-runtime": "^0.13.3",
+    "semantic-release": "^17.4.4",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.11",
     "vue-html-loader": "^1.2.4",
