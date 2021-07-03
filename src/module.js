@@ -2,7 +2,7 @@ import axios from 'axios';
 import keyBy from 'lodash.keyby';
 import Vue from 'vue';
 
-const moduleFactory = ({ host, appName, namePrefix, strategyProviders = {} }) => ({
+const moduleFactory = ({ host, appName, instanceId, namePrefix, strategyProviders = {} }) => ({
   actions: {
     async fetch({ commit }) {
       commit('setLoading', true);
@@ -12,7 +12,8 @@ const moduleFactory = ({ host, appName, namePrefix, strategyProviders = {} }) =>
           `${host}/api/client/features${namePrefix ? `?namePrefix=${namePrefix}` : ''}`,
           {
             headers: {
-              'UNLEASH-APPNAME': appName
+              'UNLEASH-APPNAME': appName,
+              'UNLEASH-INSTANCEID': instanceId
             }
           }
         );
